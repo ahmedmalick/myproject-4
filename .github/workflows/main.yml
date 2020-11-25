@@ -14,6 +14,8 @@ jobs:
   
       - name: Installing npm
         uses: actions/setup-node@v2-beta
+        with:
+          version: 12
 
       - name: Installing yarn
         uses: Borales/actions-yarn@v2.3.0
