@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Counter from './Counter.js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App (){
+
+  let[count, setCount] = useState(0);
+  let[dayTime, setDayTime] =useState(false);
+
+  return(
+    <div className={`container ${dayTime ? `morningpic` :`nightpic`}`}> 
+      <Counter Counter={count}/>
+      <br />
+      <p className="text2">It's {dayTime ? `Morning` : `Night`}</p>
+      <br />
+      <div>
+        <button className="btn1" onClick={() => setCount(--count)}>Decrement</button>
+        <button className="btn2" onClick={() => setDayTime(!dayTime)}>Update Day Time</button>
+        <button className="btn3" onClick={() => setCount(++count)}>Increment</button>
+      </div>
     </div>
   );
 }
