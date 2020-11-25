@@ -1,0 +1,30 @@
+name: myproject-4
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+  
+      - name: Installing npm
+        run: actions/setup-node@v2-beta
+
+      - name: Installing yarn
+        uses: Borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+          
+      - name: Creating build
+        run: yarn build
+        
+      - name: Installing surge
+        run: npm install --global surge
+      
+      - name: Deploying on surge
+        run: surge ./build myproject-4.surge.sh --token ${{ secrets.SURGE_TOKEN }} 
