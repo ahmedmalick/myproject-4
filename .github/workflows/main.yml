@@ -24,7 +24,7 @@ jobs:
         run: yarn build
         
       - name: Installing surge
-        run: npm install --global surge
+        run: npm install -g surge
       
       - name: Deploying on surge
         run: surge ./build myproject-4.surge.sh --token ${{ secrets.SURGE_TOKEN }} 
